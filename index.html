@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Scanner</title>
+  <!-- Include Vue.js and the Vue QR Code Scanner library -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://unpkg.com/vue-qrcode-reader"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>QR Code Scanner</h1>
+    <!-- Display the camera feed and scan for QR codes -->
+    <qrcode-stream @decode="onDecode" />
+    <p v-if="scannedData">Scanned QR Code: {{ scannedData }}</p>
+  </div>
+
+  <script>
+    // Initialize Vue app
+    new Vue({
+      el: '#app',
+      data: {
+        scannedData: null
+      },
+      methods: {
+        // Method to handle decoded QR code data
+        onDecode(decodedData) {
+          this.scannedData = decodedData;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
